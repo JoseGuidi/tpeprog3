@@ -72,6 +72,16 @@ public class MySimpleLinkedList<T> {
                return -1;
         }
         
+        public boolean buscar(int i){
+            Node nodo=first;
+            while(nodo!=null){
+                if((int)nodo.getInfo()==i){
+                    return true;
+                }
+            }
+            return false;
+        }
+        
 	@Override
 	public String toString() {
 		// TODO
@@ -80,7 +90,7 @@ public class MySimpleLinkedList<T> {
                 return "";
 	}
         
-        public  Iterator<T> iterator(){
+        public  MyIterator<T> iterator(){
             return new MyIterator<T>(this.first);
         }
 }

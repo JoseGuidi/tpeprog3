@@ -18,6 +18,10 @@ public class MyIterator<T> implements Iterator<T> {
         cursor=first;
     }
     
+    public T get(){
+        return cursor.getInfo();
+    }
+    
     @Override
     public boolean hasNext() {
         return cursor!=null;
