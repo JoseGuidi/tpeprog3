@@ -4,6 +4,8 @@
  */
 package tpgrafos;
 
+import java.util.Objects;
+
 /**
  *
  * @author ilari
@@ -36,5 +38,15 @@ public class Arco<T> {
 	public T getEtiqueta() {
 		return etiqueta;
 	}
-
+        public boolean equals(Object o) {
+            if (this == o) {
+                return true;
+            }
+            if (!(o instanceof Arco)) {
+                return false;
+            }
+            Arco arco = (Arco) o;
+            return Objects.equals(getVerticeOrigen(), arco.getVerticeOrigen()) &&
+                    Objects.equals(getVerticeDestino(), arco.getVerticeDestino());
+        }
 }
