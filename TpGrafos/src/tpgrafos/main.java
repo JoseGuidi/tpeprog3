@@ -30,7 +30,7 @@ public class main {
     grafo.agregarArco(1, 4, "Arco 1-4");
     grafo.agregarArco(3, 4, "Arco 3-4");
     grafo.agregarArco(4, 5, "Arco 4-5");
-    grafo.agregarArco(5, 6, "Arco 5-6");
+    
 
     // Obtener arco
     /*Arco<String> arco = grafo.obtenerArco(2, 3);

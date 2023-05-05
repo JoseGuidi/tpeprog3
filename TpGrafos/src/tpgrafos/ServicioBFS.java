@@ -22,13 +22,15 @@ public class ServicioBFS {
 		this.grafo = grafo;
 	}
 	
-        public List<Integer> bfsForest(Integer key, ArrayList<Integer> lista){
+        public List<Integer> bfsForest(Integer key){
             mapavertices.put(key,true);
-            GrafoDirigido gra=(GrafoDirigido)grafo;
+            ArrayList<Integer>lista=new ArrayList();
+            lista.add(key);
+            
             fila.add(key);
             while(!fila.isEmpty()){
                 fila.remove(0);
-                Iterator it=gra.obtenerAdyacentes(key);
+                Iterator it=grafo.obtenerAdyacentes(key);
                 while(it.hasNext()){
                     Integer v=(Integer)it.next();
                     if(mapavertices.get(v).equals(false)){
@@ -48,19 +50,17 @@ public class ServicioBFS {
                 mapavertices=new HashMap();
                 ArrayList<Integer> lista=new ArrayList();
 		fila=new ArrayList();
-                GrafoDirigido gra=(GrafoDirigido)grafo;
-                Iterator it=gra.obtenerVertices();
+                
+                Iterator it=grafo.obtenerVertices();
                 while(it.hasNext()){
                     Integer i=(Integer)it.next();
                     mapavertices.put(i,false);
                 }
-                it=gra.obtenerVertices();
+                it=grafo.obtenerVertices();
                 while(it.hasNext()){
                     Integer i=(Integer)it.next();
-                    if(!lista.contains(i))
-                        lista.add(i);
                     if(mapavertices.get(i).equals(false)){
-                        lista.addAll(bfsForest(i,new ArrayList()));
+                        lista.addAll(bfsForest(i));
                         
                     }
                 }

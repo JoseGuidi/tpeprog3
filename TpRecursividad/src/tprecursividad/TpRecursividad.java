@@ -4,6 +4,8 @@
  */
 package tprecursividad;
 
+import java.util.List;
+
 /**
  *
  * @author Razor
@@ -14,7 +16,20 @@ public class TpRecursividad {
      * @param args the command line arguments
      */
     
+    public static void fibo(int num,int ant,int actual){
+        if(num>=2){
+            int res=ant+actual;
+            System.out.println(res);
+            actual=res;
+            ant=actual;
+            fibo(num-1,ant,actual);
+        }
+        else
+            System.out.println(1);
+    }
+    
     public static String fiboNumber(int n){
+        
         if(n<=1)
             return n+"";
         else{
@@ -31,10 +46,9 @@ public class TpRecursividad {
     }
     
     public static void main(String[] args) {
-        String a=convertirAbinario(26);
-        String b=fiboNumber(5);
         
-        System.out.println(b);
+        fibo(5,1,1);
+       
     }
     
 }

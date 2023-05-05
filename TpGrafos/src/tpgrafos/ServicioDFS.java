@@ -32,6 +32,7 @@ public class ServicioDFS {
 	}
 	
         public List<Integer> dfsVisitar(Integer key,ArrayList<Integer> arr){
+            
             if(!mapavertices.get(key).igualAColor("negro"))
                 mapavertices.get(key).setColor("amarillo");
             tiempo++;
