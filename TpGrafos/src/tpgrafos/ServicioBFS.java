@@ -26,7 +26,6 @@ public class ServicioBFS {
             mapavertices.put(key,true);
             ArrayList<Integer>lista=new ArrayList();
             lista.add(key);
-            
             fila.add(key);
             while(!fila.isEmpty()){
                 fila.remove(0);

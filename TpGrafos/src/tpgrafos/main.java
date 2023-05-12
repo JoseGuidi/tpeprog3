@@ -26,11 +26,11 @@ public class main {
     grafo.agregarArco(1, 2, "Arco 1-2");
     grafo.agregarArco(1, 3, "Arco 1-3");
     grafo.agregarArco(2, 3, "Arco 2-3");
-    grafo.agregarArco(3, 1, "Arco 3-1");
     grafo.agregarArco(1, 4, "Arco 1-4");
     grafo.agregarArco(3, 4, "Arco 3-4");
     grafo.agregarArco(4, 5, "Arco 4-5");
-    
+    grafo.agregarArco(5, 6, "Arco 5-6");
+    grafo.agregarArco(2, 6, "Arco 2-6");
 
     // Obtener arco
     /*Arco<String> arco = grafo.obtenerArco(2, 3);
@@ -63,19 +63,23 @@ public class main {
     System.out.println("Arco de 1 a 3: " + grafo.obtenerArco(1, 3));
     grafo.borrarArco(2, 3);
     System.out.println("Cantidad de arcos después de borrar (2,3): " + grafo.cantidadArcos()); 
-    */
+    
     // Iterar todos los arcos del grafo
     Iterator<Arco<String>> arcos = grafo.obtenerArcos();
     while (arcos.hasNext()) {
         Arco<String> a = arcos.next();
         System.out.println("Arco entre " + a.getVerticeOrigen() + " y " + a.getVerticeDestino());
     }
-    /*ServicioDFS servicio = new ServicioDFS(grafo);
-    List<Integer> dfs = servicio.dfsForest();
-    System.out.println("Recorrido DFS: " + dfs);*/
-    ServicioBFS servicio2 = new ServicioBFS(grafo);
-    List<Integer> bfs = servicio2.bfsForest();
-    System.out.println(bfs);
+*/  Iterator it=grafo.obtenerAdyacentes(2);
+    while(it.hasNext()){
+        System.out.println(it.next());
+    }
+    ServicioDFS servicio = new ServicioDFS(grafo);
+    List<Integer> camino=servicio.camino(6, 2);
+    System.out.println(camino);
     
+    
+    
+  
 }
 }
