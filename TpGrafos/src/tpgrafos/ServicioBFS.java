@@ -18,11 +18,12 @@ public class ServicioBFS {
     private Grafo<?> grafo;
     private ArrayList<Integer> fila=new ArrayList();
     private Map<Integer,Boolean> mapavertices;
-	public ServicioBFS(Grafo<?> grafo) {
+	
+    public ServicioBFS(Grafo<?> grafo) {
 		this.grafo = grafo;
 	}
 	
-        public List<Integer> bfsForest(Integer key){
+        private List<Integer> bfsForest(Integer key){
             mapavertices.put(key,true);
             ArrayList<Integer>lista=new ArrayList();
             lista.add(key);

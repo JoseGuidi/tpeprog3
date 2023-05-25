@@ -2,10 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package tpgrafos;
+package practicoespecialprog3;
 
 import java.util.ArrayList;
-
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -20,6 +19,14 @@ public class ServicioDFS {
     private Map<Integer,TipoColorTiempo>mapavertices;
     int tiempo;
     
+    
+        
+        public ServicioDFS(Grafo<?>grafo){
+            this.grafo=grafo;
+            mapavertices=new HashMap();
+            
+        }
+    
         private void inicializarMapa(Grafo grafo){
             Iterator iter=grafo.obtenerVertices();
             while(iter.hasNext()){
@@ -28,13 +35,8 @@ public class ServicioDFS {
                 mapavertices.get(i).setColor("blanco");
             }
         }
-	public ServicioDFS(Grafo<?> grafo) {
-		this.grafo = grafo;
-                mapavertices=new HashMap<>();
-	}
-	
-        
-        //O(n) donde N represanta la cantidad de vertices totales ya que una vez que entro a uno no le pide sus adyacentes
+    
+	//O(n) donde N represanta la cantidad de vertices totales ya que una vez que entro a uno no le pide sus adyacentes
         public List<Integer> dfsVisitar(Integer key,ArrayList<Integer> arr){
             
             if(!mapavertices.get(key).igualAColor("negro"))
@@ -71,13 +73,5 @@ public class ServicioDFS {
                 }
                 System.out.println(mapavertices);
 		return vert;
-	}	
-
+	}
 }
-
-
-
-
-
-
-

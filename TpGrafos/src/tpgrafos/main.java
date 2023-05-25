@@ -70,14 +70,7 @@ public class main {
         Arco<String> a = arcos.next();
         System.out.println("Arco entre " + a.getVerticeOrigen() + " y " + a.getVerticeDestino());
     }
-*/  Iterator it=grafo.obtenerAdyacentes(2);
-    while(it.hasNext()){
-        System.out.println(it.next());
-    }
-    ServicioDFS servicio = new ServicioDFS(grafo);
-    List<Integer> camino=servicio.camino(6, 2);
-    System.out.println(camino);
-    
+*/  
     
     
   
