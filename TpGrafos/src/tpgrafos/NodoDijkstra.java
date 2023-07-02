@@ -2,17 +2,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package tpep2nico;
-
+package tpgrafos;
 
 /**
  *
  * @author ilari
  */
 public class NodoDijkstra {
-    private int valor;
-    private int distancia;
-    private int padre;
+    int valor;
+    int distancia;
+    int padre;
 
     public int getValor() {
         return valor;
@@ -48,7 +47,4 @@ public class NodoDijkstra {
         return this.valor==v;
     }
     
-    public String toString(){
-        return " Valor "+valor+" Distancia "+distancia+" Padre "+padre;
-    }
 }

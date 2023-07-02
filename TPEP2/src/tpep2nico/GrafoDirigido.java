@@ -24,6 +24,7 @@ public class GrafoDirigido<T> implements Grafo<T> {
         
         //Complejidad O(1) debido a que inserta el vertice en la key y si ya esta en uso lo reemplaza
 	public void agregarVertice(int verticeId) {
+            if(!vertices.containsKey(verticeId))
 		vertices.put(verticeId, new ArrayList<>());
                 
 	}
@@ -43,7 +44,7 @@ public class GrafoDirigido<T> implements Grafo<T> {
 	}
 
         
-        //Complejidad O(n) donde n es la cantidad de arcos en el vertice 1
+        //Complejidad O(n)+O(1)+O(1) donde n es la cantidad de arcos en el vertice 1, y donde O(1) es el costo de verificar que las claves introducidas esten almacenadas
 	@Override
 	public void agregarArco(int verticeId1, int verticeId2, T etiqueta) {
                 if((this.contieneVertice(verticeId2))&&(this.contieneVertice(verticeId1))){
@@ -57,7 +58,7 @@ public class GrafoDirigido<T> implements Grafo<T> {
                 }
 	}
 
-        //O(n) ya que debe comparar si existe el arco donde N representaria la cantidad de arcos ene el vertice 1
+        //O(n)+O(1)+O(1) ya que debe comparar si existe el arco donde N representaria la cantidad de arcos en el vertice 1, y donde O(1) es el costo de verificar que las claves introducidas esten almacenadas
 	@Override
 	public void borrarArco(int verticeId1, int verticeId2) {
                 if((this.contieneVertice(verticeId2))&&(this.contieneVertice(verticeId1))){
@@ -74,11 +75,11 @@ public class GrafoDirigido<T> implements Grafo<T> {
 	public boolean contieneVertice(int verticeId) {
 		return vertices.containsKey(verticeId);
 	}
-        //O(n) donde N representa la cantidad de arcos del vertice
+        //O(a) donde a representa la cantidad de arcos del vertice
 	@Override
 	public boolean existeArco(int verticeId1, int verticeId2) {
 		boolean existe=false;
-                ArrayList<Arco<T>> arcos=vertices.get(verticeId1);
+                ArrayList<Arco<T>> arcos=vertices.get(verticeId1); //get O(1)
                 Arco a1=new Arco(verticeId1,verticeId2,null);
                 for(Arco a:arcos){
                     if(a1.equals(a))
@@ -86,11 +87,10 @@ public class GrafoDirigido<T> implements Grafo<T> {
                 }
                 return existe;
 	}
-        //O(n) recorre todos los arcos del vertice 1 en el peor de los casos para ver que los vertices sean iguales
+        //O(Arcos en v1)=O(a) recorre todos los arcos del vertice 1 en el peor de los casos para ver que los vertices sean iguales
 	@Override
 	public Arco<T> obtenerArco(int verticeId1, int verticeId2) {
 		ArrayList<Arco<T>>arcos=vertices.get(verticeId1);
-                
                 for(Arco a:arcos)
                     if(a.getVerticeDestino()==verticeId2){
                         return a;
@@ -105,13 +105,13 @@ public class GrafoDirigido<T> implements Grafo<T> {
 		return vertices.size();
 	}
         
-        //O(n) ya que depende de la cantidad de vertices cargados sobre el mapa
+        //O(1) devuelvo la variable guardada
 	@Override
 	public int cantidadArcos() {
 		return this.cantidadArcos;
 	}
         
-        //O(n) donde n es el numero de vertices en la lista los recorrera a todos cada vez que se llame
+        //O(1) se crea el iterador en base a las claves del mapa
 	@Override
 	public Iterator<Integer> obtenerVertices() {
                 Iterator<Integer> it=vertices.keySet().iterator();
@@ -129,7 +129,7 @@ public class GrafoDirigido<T> implements Grafo<T> {
                 }
                 return ady.iterator();
 	}
-        //O(n*m)=O(n) donde N es la cantidad de vertices y M la cantidad de arcos por vertices ya que se debe acceder a TODOS los arcos de todos los verticees
+        //O(v*a)=O(n) donde V es la cantidad de vertices y A la cantidad de arcos por vertices ya que se debe acceder a TODOS los arcos de todos los verticees
 	@Override
 	public Iterator<Arco<T>> obtenerArcos() {
             ArrayList<Arco<T>>arcos=new ArrayList();

@@ -26,6 +26,7 @@ public class Back {
 
     
     public ArrayList<Arco> construirBack(Grafo g){
+        iteraciones=0;
         Iterator it=g.obtenerVertices();
         ArrayList<Arco>mejorCamino=new ArrayList();
         ArrayList<Arco>caminoAct=new ArrayList();
@@ -43,18 +44,17 @@ public class Back {
         return iteraciones;
     }
 
-    public void backTrack(ArrayList<Arco>mejorCamino, ArrayList<Arco>caminoAct, Grafo g, ArrayList<Integer>visitados, Integer vAct){
-        
+    private void backTrack(ArrayList<Arco>mejorCamino, ArrayList<Arco>caminoAct, Grafo g, ArrayList<Integer>visitados, Integer vAct){
+        iteraciones++;
         if(esSolucion(caminoAct,g)){
             if((distanciasCaminos(mejorCamino)>distanciasCaminos(caminoAct))||(mejorCamino.isEmpty())){
                 mejorCamino.clear();
                 mejorCamino.addAll(caminoAct);
             }
         }
-        else if(vAct!=null){
+        else if(vAct!=null){ //primero ejecuta el backtracking para cada uno de los adyacentes del vertice
             if(!visitados.contains(vAct)){
                 visitados.add(vAct);
-                iteraciones++;
                 Iterator it=g.obtenerAdyacentes(vAct);
                 while(it.hasNext()){
                     int ady=(Integer)it.next();
@@ -66,7 +66,7 @@ public class Back {
                 }
                 it=g.obtenerAdyacentes(vAct);
                 ArrayList<Arco>arcos=new ArrayList();
-                while(it.hasNext()){
+                while(it.hasNext()){ //llama al backtracking con los arcos adyacentes (tal vez sus adyacentes son el mejor camino y no un camino partiendo por uno de ellos)
                     int ady=(Integer)it.next();
                     Arco arcoAct=g.obtenerArco(vAct, ady);
                     caminoAct.add(arcoAct);
@@ -79,6 +79,8 @@ public class Back {
             }
         }
     }
+    
+
     
     public boolean contieneTodosLosVertices(ArrayList<Integer>visitados,Grafo g){
         boolean todos=true;
@@ -123,4 +125,14 @@ public class Back {
     // Si se cumplen ambas condiciones, es una solución válida
     return true;
 }
+
+
+
+
+
+
+
+
+
+
 }

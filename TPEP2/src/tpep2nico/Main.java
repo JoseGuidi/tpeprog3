@@ -17,11 +17,12 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) {
         GrafoNoDirigido grafo = new GrafoNoDirigido();
-        CSVReader csvReader = new CSVReader("src/tpep2nico/dataset/dataset1.txt");
+        CSVReader csvReader = new CSVReader("src/tpep2nico/dataset/dataset2.txt");
         csvReader.setGrafo(grafo);
         csvReader.read();
         
         System.out.println(grafo);
+        
         
       Back backtracking = new Back();
         ArrayList<Arco> tunelCorto = backtracking.construirBack(grafo);
@@ -42,6 +43,7 @@ public class Main {
         Greedy greedy = new Greedy();
         Integer origen = (Integer) grafo.obtenerVertices().next();
         ArrayList<NodoDijkstra> tunelCortoGreedy = greedy.caminos(grafo,origen);
+        System.out.println(tunelCortoGreedy);
         System.out.println("Tecnica utilizada: Greedy");
         System.out.print("Tunel: ");
         for(int i = 1; i < tunelCortoGreedy.size();i++){

@@ -35,20 +35,22 @@ public class Greedy {
             solucion.add(new NodoDijkstra(i,Integer.MAX_VALUE,Integer.MAX_VALUE));
         }
         solucion.get(obtenerIndice(origen,solucion)).setDistancia(0);
+        solucion.get(obtenerIndice(origen,solucion)).setPadre(origen);
         while(!vConsiderados.containsAll(vertices)){
             int u=seleccionarVertice(vConsiderados,vertices);
             vConsiderados.add(u);
             int indice=obtenerIndice(u,solucion);
             ArrayList<Integer> ady=adyacentesNoVisitados(g,u,vConsiderados);
             for(Integer i:ady){
+                iteraciones++;
                 int posi=obtenerIndice(i,solucion);
                 int dist=(Integer)g.obtenerArco(u, i).getEtiqueta();
                 if((solucion.get(indice).getDistancia()+dist)<solucion.get(posi).getDistancia()){
-                    iteraciones++;
                     solucion.get(posi).setDistancia(solucion.get(indice).getDistancia()+dist);
-                    solucion.get(posi).setPadre(indice);
+                    solucion.get(posi).setPadre(solucion.get(indice).getValor());
                 }
             }
+            iteraciones++;
         }
         return solucion;
     }

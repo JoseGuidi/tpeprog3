@@ -49,7 +49,7 @@ public class Arco<T> {
             }
             Arco arco = (Arco) o;
             return Objects.equals(getVerticeOrigen(), arco.getVerticeOrigen()) &&
-                    Objects.equals(getVerticeDestino(), arco.getVerticeDestino());
+                    Objects.equals(getVerticeDestino(), arco.getVerticeDestino()) ;
         }
         //toString por chatGPT
         public String toString() {
